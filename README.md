@@ -1,2 +1,3 @@
-# ECE2300_design_files
-A documentation and organization of design files for components in verilog. 
+# Verilog (ECE2300) 
+
+![Monkey Verilog meme](/imgs/verilog_monkey.png)
