@@ -11,6 +11,12 @@ The students of Professor Ali who need to reference previously created modulues 
 ### How to use this repo?
 * The plans for this repo is to have design modules, entire lab builds that were approved, and basic important concept of Vivado aimed to help assist students.
 
+### [Beginner guide](/Beginner_guide/)
+* A folder dedicated how to create a new project, setup the chip you're using, and create a new module, test bench, and set up your xdc.
+
+### Trouble shooting errors explained
+
+
 ### List of designs 
 1. [Fa1bit.v]() 
     - A single Full Adder
@@ -26,10 +32,19 @@ The students of Professor Ali who need to reference previously created modulues 
     - N bit right shifter
 7. [ucb.v]()
     - Clk input, 4 output that resets once the input has gone through 9 in decimal
-7. [uch.v]()
+8. [uch.v]()
     - Clk input, 4 output that resets once the input has gone through 15 in decimal
-7. [uch_ucb_ssd.v]()
+9. [uch_ucb_ssd.v]()
     - A combination of UCB and UCH. Includes a select to switch between the two and clock divider as a parameter labled **clk_counter_value**
+10. [d_ff.v]()
+    - Implementation of D flip flops
+11. [nd_ff.v]()
+    - N bit D flip flop
+
+### List of Labs
+1. [Lab 1](/lab_files/lab1_decoder/): 4x16 Decoder
+2. [Lab 2](/lab_files/lab2_7seg/): 7 segment output using 4 switches, implemented using always block
+3. [Lab 3](/lab_files/lab3_counter/): 7 segment output using counter, implemented using always block and clock divider
 
 
 
