@@ -74,6 +74,8 @@ Total Power: 0.757
 
 
 # 4x16 Decoder
+File: [decoder_4_16](/lab_files/lab1_decoder/design_files/decoder_4_16.v)
+
 
 ![not gate explanation](/imgs/lab_schematic_photos/deocder4x16_schematic.png)
 
@@ -174,3 +176,136 @@ In the actual code, what we are doing is following the schematic where the enabl
 LUT Use: 8
 
 Total Power: 1.13
+
+# Test bench of 4x16 decoder
+To test our 4x16 decoder we need to set the inputs of our testbench file as **register** and outputs as **wire**. The syntax reg allows for the signals to change through time in our test bench.
+
+```verilog
+module decoder_4_16_tb();
+    reg Port_X0;
+    reg Port_X1;
+    reg Port_X2;
+    reg Port_X3;
+    reg Enable;
+    wire [3:0] Port_D0;
+    wire [3:0] Port_D1;
+    wire [3:0] Port_D2;
+    wire [3:0] Port_D3;
+    
+    decoder_4_16 DECODERTB(
+        .port_x0(Port_X0),
+        .port_x1(Port_X1),
+        .port_x2(Port_X2),
+        .port_x3(Port_X3),
+        .port_E(Enable),
+        .port_d0(Port_D0),
+        .port_d1(Port_D1),
+        .port_d2(Port_D2),
+        .port_d3(Port_D3)
+    ); 
+```
+Notice how the module has closed brackets after the name **decoder_4_16_tb** because we are not creating a new design with new inputs and outputs, but rather testing existing ones.
+
+We make an instance of the 4x16 decoder using the reg we created as the input and wire as the output. When we run the simulation, it will show us the values of both the inputs and outputs as the names of the variables we initalize in order.
+
+### Changing the values of the reg values
+It can be daunting at first to know what and when to set the variable to since there are so many, but remember the whole point of the test bench is to see how the inputs effect the output. In this case I want to know in what way will my output be effected if my enable is off/on, and what will happen with any combination of ports on or off.
+
+```verilog
+    integer i, j, k, l, m;
+    initial
+        begin: Decoder_4_to_16
+            for(i = 0; i < 2; i = i + 1)
+                begin: Ebit
+                Enable = i;
+                #20
+                for(j = 0; j < 2; j = j + 1)
+                    begin: X0bit
+                    Port_X0 = j;
+                    #20
+                    for(k = 0; k < 2; k = k + 1)
+                        begin: X1bit
+                        Port_X1 = k;
+                        #20
+                        for(l = 0; l < 2; l = l + 1)
+                            begin: X2bit
+                            Port_X2 = l;
+                            #20
+                            for(m = 0; m < 2; m = m + 1)
+                                begin: X3bit
+                                Port_X3 = m;
+                                #20;
+                            end
+                        end
+                    end
+                end
+            end
+        #20
+        $finish;
+        end      
+endmodule
+```
+To make this bit of code more understandable, lets break down some aspects of it. I create variables i, j, k, l, and m so i could create a for loop for each one of those. to begin changing the value values of the registers we have to use the keyword **initial** and then begin changing values.
+
+The keyword **begin** & **end** is the equivalent of brackets in verilog. We are also capable of giving every begin a name to help give explanation of any following code. Here is an equivalent comparison.
+
+Verilog:
+```verilog
+integer = i;
+initial
+    begin: CHANGE_E_REG
+        for(i = 0; i < 2; i = i+1)
+            Enable = i;
+    end
+```
+C :
+```c
+int i;
+    {
+    for(i = 0; i < 2; i++)
+        Enable = i;
+    }
+```
+
+You might ask why is it that you don't need a begin and end for the inside of the For Loop inside the verilog code block, and that has to do with single lines of codes for if statements, for loops, and while loops don't need brackets. But if there are 2 lines of code or more you need another begin and end, just like how you need brackets in C.
+
+Verilog:
+```verilog
+integer = i;
+initial
+    begin: CHANGE_E_REG
+        for(i = 0; i < 2; i = i+1)
+            begin: Assign_E
+            Enable = i;
+            #20;
+            end
+    end
+```
+C :
+```c
+int i;
+    {
+    for(i = 0; i < 2; i++)
+        {
+        Enable = i;
+        ADD_DELAY();
+        }
+    }
+```
+
+### **Analyzing Simulation Waveform**
+File: [decoder_4_16 simulation](/lab_files/lab1_decoder/test_bench/decoder_4_16_tb.v)
+![simulation of decoder](/imgs/lab_schematic_photos/decoder4x16_simulation.png)
+
+We can break down this simulation down into 3 part
+1. Input waveforms
+2. Output waveforms
+3. Integer values 
+
+From our previous schematic of the 4x16 decoder we know that if the Enable is 0, then there will be no output where we can see at what point does the Enable switch to a 1. This means that our outputs **Port_D0[3:0], Port_D1[3:0], Port_D2[3:0], Port_D3[3:0],** will stay 0 until the enable is turned on. 
+
+We can see the moment when the enable turns on, all inputs are 1 and knowing how decoders work we known d15 will be the only output that displays a 1. From how I designed the 4x16 decoder, output d15 is named Port_D3[3]. So to inspect that our decoder is working as exepected we can extend the Port_D3[3:0] array on the simulation to see if it is true that Port_D3[3] = 1.
+
+![usage of resources by 2x4 decoder](/imgs/lab_schematic_photos/decoder4x16_simulation_d15.png)
+
+We see that that Port_D3[3] = 1, therefore we can guarentee that my decoder is working. We can check for every value combination of the ports if we are still unsure if we designed the modulue correct.
