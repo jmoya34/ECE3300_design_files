@@ -35,11 +35,9 @@ module uch_ucb_ssd_tb #(parameter clk_counter_value_tb = 0) (
     wire uch_ucb_ssd_sel_led_tb;
     
     wire [6:0] uch_ucb_ssd_cc_tb;
-    wire uch_ucb_ssd_an_on_tb;
-    wire [6:0] uch_ucb_ssd_an_off_tb;
+    wire [7:0] uch_ucb_ssd_an_tb;
     
-    assign uch_ucb_ssd_an_on_tb = 0;
-    assign uch_ucb_ssd_an_off_tb = 7'bzzzzzzz;
+    assign uch_ucb_ssd_an_tb = 8'bzzzzzzz0;
     
     // generating clock
     initial
@@ -98,8 +96,7 @@ module uch_ucb_ssd_tb #(parameter clk_counter_value_tb = 0) (
             .uch_ucb_ssd_sel_led(uch_ucb_ssd_sel_led_tb),         
                        
             .uch_ucb_ssd_cc(uch_ucb_ssd_cc_tb),
-            .uch_ucb_ssd_an_on(uch_ucb_ssd_an_on_tb), 
-            .uch_ucb_ssd_an_off(uch_ucb_ssd_an_off_tb)
+            .uch_ucb_ssd_an(uch_ucb_ssd_an_tb)
         );
 
 endmodule

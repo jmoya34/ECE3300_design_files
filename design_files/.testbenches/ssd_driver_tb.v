@@ -28,11 +28,9 @@ module ssd_driver_tb(
     wire [3:0] ssd_driver_port_led_tb;
     wire [6:0] ssd_driver_port_cc_tb;
     wire ssd_driver_port_dp_out_tb;
-    wire ssd_driver_port_an_on_tb;
-    wire [6:0] ssd_driver_port_an_off_tb;
+    wire [7:0] ssd_driver_port_an_tb;
     
-    assign ssd_driver_port_an_on_tb = 1'b0;
-    assign ssd_driver_port_an_off_tb = 7'bzzzzzzz;
+    assign ssd_driver_port_an_tb = 8'bzzzzzzz0;
     assign ssd_driver_port_dp_out_tb = ssd_driver_port_dp_in_tb;
     
     
@@ -42,7 +40,7 @@ module ssd_driver_tb(
         .ssd_driver_port_led(ssd_driver_port_led_tb),
         .ssd_driver_port_cc(ssd_driver_port_cc_tb),
         .ssd_driver_port_dp_out(ssd_driver_port_dp_out_tb),
-        .ssd_driver_port_an_on(ssd_driver_port_an_on_tb)
+        .ssd_driver_port_an(ssd_driver_port_an_tb)
     );
     
     integer i;

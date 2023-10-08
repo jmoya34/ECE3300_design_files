@@ -38,11 +38,10 @@ module mux_nx1_tb #(parameter SIZE_TB = 8) ();
         for (i=0; i<2**$clog2(SIZE_TB); i=i+1)
         begin: SEL_LOOP
             mux_nx1_sel_tb = i;
-            #(5/(2**i))
             for (j=0; j<2**SIZE_TB; j=j+1)
             begin: IN_LOOP
                 mux_nx1_in_tb = j;
-                #(1/(2**i));
+                #( (SIZE_TB) / (SIZE_TB-i) );
             end
         end
     #20
