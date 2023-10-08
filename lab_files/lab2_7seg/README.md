@@ -69,5 +69,14 @@ endmodule
 
 The reason why we create a register to get the output value is we cannot direclty assign an output inside an **always block**. That is why we assign the the ssd_driver_output_cc to the tmp_cc value.
 
+# Test bench
 
 File: [ssd_driver test bench](/lab_files/lab2_7seg/test_bench/ssd_driver_TB.v)
+
+![ssd_driver test bench](/imgs/lab_schematic_photos/lab2/ssd_driver_simulation.png)
+
+# Resources
+![ssd_driver test bench](/imgs/lab_schematic_photos/lab2/ssd_driver_resources.png)
+LUT Use: 4
+
+Total Power: 11.75
