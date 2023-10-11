@@ -28,7 +28,7 @@ module ssd_driver(                                          //
     output [7:0] ssd_driver_port_an                         // Output for anode pins for 7 segments; there are 8 SSDs so 1 bit for display
     );                                                      //
 															//
-    assign ssd_driver_port_dp_in = ssd_driver_port_dp_out;  // Assign dp_out to dp_in
+    assign ssd_driver_port_dp_out = ssd_driver_port_dp_in;  // Assign dp_out to dp_in
     assign ssd_driver_port_led = ssd_driver_port_in;        // Assign LEDs to input                
     assign ssd_driver_port_an = 8'bzzzzzzz0;             	// Only want the rightmost SSD to turn on; set bit 0 to 0, bits [7:1] are z
     reg [6:0] ssd_driver_temp_cc;                           // temp register for port_cc       
@@ -48,12 +48,12 @@ module ssd_driver(                                          //
                 4'h7: ssd_driver_temp_cc = 7'b1111000;      //
                 4'h8: ssd_driver_temp_cc = 7'b0000000;      //
                 4'h9: ssd_driver_temp_cc = 7'b0011000;      //
-                4'hA: ssd_driver_temp_cc = 7'b0100111;      //
-                4'hB: ssd_driver_temp_cc = 7'b0110011;      //
-                4'hC: ssd_driver_temp_cc = 7'b0011101;      //
-                4'hD: ssd_driver_temp_cc = 7'b0010110;      //
-                4'hE: ssd_driver_temp_cc = 7'b0000111;      //
-                4'hF: ssd_driver_temp_cc = 7'b1111111;      //
+                4'hA: ssd_driver_temp_cc = 7'b0001000;
+                4'hB: ssd_driver_temp_cc = 7'b0000011;
+                4'hC: ssd_driver_temp_cc = 7'b1000110;
+                4'hD: ssd_driver_temp_cc = 7'b0100001;
+                4'hE: ssd_driver_temp_cc = 7'b0000110;
+                4'hF: ssd_driver_temp_cc = 7'b0001110;
 															//
                 default: ssd_driver_temp_cc = 7'bzzzzzzz; 	// Set 7seg LEDs to z/open-ckt for safety
             endcase                                         //

@@ -18,28 +18,36 @@ The students of Professor Ali who need to reference previously created modulues 
 
 
 ### List of designs 
-1. [Fa1bit.v]() 
+1. [Fa1bit.v](/design_files/FA1bit/) 
     - A single Full Adder
-2. [FAnbit_RCA.v]()
+2. [FAnbit_RCA.v](/design_files/FAnbit_RCA/)
     - N bit ripple carry adder
-3. [HA.v]()
+3. [HA.v](/design_files/HA/)
     - A single Half Adder
-4. [mux_nx1.v]()
+4. [mux_nx1.v](/design_files/mux_nx1/)
     - N bit number of input mux
-5. [ssd_driver.v]()
+5. [ssd_driver.v](/design_files/ssd_driver/)
     - 4 input, 7 wire output to 7 segment (possible combinations 0-F)
-6. [shlr_n.v]()
+6. [shlr_n.v](/design_files/shlr_n/)
     - N bit right shifter
-7. [ucb.v]()
+7. [ucb.v](/design_files/ucb/)
     - Clk input, 4 output that resets once the input has gone through 9 in decimal
-8. [uch.v]()
+8. [uch.v](/design_files/uch/)
     - Clk input, 4 output that resets once the input has gone through 15 in decimal
-9. [uch_ucb_ssd.v]()
+9. [uch_ucb_ssd.v](/design_files/uch_ucb_ssd/)
     - A combination of UCB and UCH. Includes a select to switch between the two and clock divider as a parameter labled **clk_counter_value**
 10. [d_ff.v]()
     - Implementation of D flip flops
 11. [nd_ff.v]()
     - N bit D flip flop
+12. [Barrel Shifter](/design_files/barrelshifter/)
+    - Shifts or rotates bits, is parameterized
+13. [Clk counter / Clk divider](/design_files/clock_manager/)
+    - Is a counter but can be used to create a clock divider using 32 as parameter
+14. [2x1 Mux N input, N output](/design_files/mux2x1_ninput_noutput/)
+    - 2 input parameters and 1 output parameters with a both inputs and outputs having N wires
+15. [upCounter (4bit output)](/design_files/upCounter/)
+    - Outputs BCD or Hex output in 4 bit output
 
 ### List of Labs
 1. [Lab 1](/lab_files/lab1_decoder/): 4x16 Decoder
