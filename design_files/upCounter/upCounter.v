@@ -34,14 +34,14 @@ module upCounter
                 wire [3:0] counter_mux_out_bcd;
                 wire [3:0] counter_mux_out_hex;
                 
-                UCH  hex_counter_up(
+                uch  hex_counter_up(
                     .uch_en(counter_mux_en),
                     .uch_rst(counter_mux_rst),
                     .uch_clk(counter_mux_clk),
                     .uch_out(counter_mux_out_hex)
                 );
                 
-                UCB bcd_counter_up(
+                ucb bcd_counter_up(
                     .ucb_en(counter_mux_en),
                     .ucb_rst(counter_mux_rst),
                     .ucb_clk(counter_mux_clk),
